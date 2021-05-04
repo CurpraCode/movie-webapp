@@ -19,7 +19,7 @@ function Header() {
             </li>
           </Link>
 
-          <Link to="/movies">
+          <Link to="/home">
             <li>
               <box-icon name="movie-play" size="1.9rem"  color="#ffffff"></box-icon>Movies
             </li>
@@ -47,7 +47,11 @@ function Header() {
 
 export default Header;
 const Hom =styled.div`
-background-color: #171717;
+background-color: rgba(36, 36, 36, 0.838);
+position:fixed;
+top:0;
+right:0;
+left:0;
 `
 const HomeHead = styled.div`
   display: flex;

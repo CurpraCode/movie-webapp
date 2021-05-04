@@ -49,7 +49,8 @@ function Series() {
     <div>
       <Header />
       <MovieRow>
-        <p>Latest</p>
+        <p> <box-icon name='trending-up' animation='tada' color="#fff" size="md" ></box-icon>Trending</p>
+        <hr/>
         <MovieSet>
           {current.map((currents) => {
             return (
@@ -77,9 +78,10 @@ function Series() {
             );
           })}
         </MovieSet>
-      </MovieRow>
-      <MovieRow>
-        <p>On Airing</p>
+     
+     
+        <p> <box-icon name='tv' animation='tada' color="#fff" size="md" ></box-icon>On Air </p>
+       <hr/>
         <MovieSet>
           {tv.map((Tvs) => {
             return (
@@ -107,9 +109,9 @@ function Series() {
             );
           })}
         </MovieSet>
-      </MovieRow>
-      <MovieRow>
-        <p>Airing Today</p>
+      
+      <p><box-icon name='youtube' size="md" type='logo' color="#fff" animation='tada' ></box-icon>Airing Today</p>
+       <hr/>
         <MovieSet>
           {air.map((Airs) => {
             return (
@@ -149,6 +151,16 @@ const MovieRow = styled.div`
   max-width: 1140px;
   height: 100%;
   margin: 0px auto;
+  margin-top:6rem;
+  p{
+    font-size:1.6rem;
+    font-weight:bold;
+    display:flex;
+    align-items:center;
+  }
+  box-icon{
+    margin-right:5px;
+  }
 `;
 const MovieSet = styled.div`
   display: flex;
@@ -166,8 +178,30 @@ const MovieShape = styled.div`
     margin-bottom: 10px;
     opacity: 1;
     display: block;
-    border-radius: 1rem;
-    transition: 0.5s ease;
+    border-radius: 0.8rem;
+    /* transition: 0.5s ease; */
     backface-visibility: hidden;
+  }
+  h4{
+    margin-bottom:0rem;
+    font-size:0.8rem;
+  }
+  p{
+    display:flex;
+    align-items:center;
+    margin-right:0.3rem;
+    font-size:0.7rem;
+  }
+  span{
+    display:flex;
+    align-items:center;
+    color:#ffe70d;
+    margin-left:0.5rem;
+  }
+  img:hover{
+    border: 2px solid rgba(45, 125, 245, 0.804);
+  transition: 0.2s ease-in;
+  opacity: 0.8;
+  transform :scale(1.02);
   }
 `;
