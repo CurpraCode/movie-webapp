@@ -4,16 +4,19 @@ import axios from "axios";
 import Header from "../common/Header";
 import Footer from "../common/Footer";
 import styled from "styled-components";
+import ModalVideo from "react-modal-video";
+import "react-modal-video/scss/modal-video.scss";
 
 function MovieDetails(props) {
   const { id } = useParams();
   const [movieSelect, setMovieSelect] = useState();
+  const [isOpen, setOpen] = useState(false);
 
   // const BASE_URL
   useEffect(() => {
     axios
       .get(
-        `https://api.themoviedb.org/3/movie/${id}?api_key=0d94f61d891c39c0d8ddc956d5ca297b`
+        `https://api.themoviedb.org/3/movie/${id}?api_key=0d94f61d891c39c0d8ddc956d5ca297b&append_to_response=videos`
       )
       .then((res) => {
         console.log(res);
@@ -30,15 +33,28 @@ function MovieDetails(props) {
           <Box>
             <h2>{movieSelect?.title}</h2>
             <div>
-            <button>
-              <box-icon name="play"></box-icon>PLAY
-            </button>
-            <button>
-              <box-icon name="play"></box-icon>TRAILER
-            </button>
-            <Button>
-              <box-icon name="plus"></box-icon>
-            </Button>
+              <button>
+                <box-icon name="play"></box-icon>PLAY
+              </button>
+              <div>
+                <ModalVideo
+                  channel="youtube"
+                  autoplay
+                  isOpen={isOpen}
+                  videoId={movieSelect?.videos.results[0].key}
+                  onClose={() => setOpen(false)}
+                  maxwidth="450px"
+                  margin="0 auto"
+                  marginTop="1rem"
+                />
+                <button onClick={() => setOpen(true)}>
+                  <box-icon name="play"></box-icon>TRAILER
+                </button>
+              </div>
+
+              <Button>
+                <box-icon name="plus"></box-icon>
+              </Button>
             </div>
           </Box>
           <Seg>
@@ -75,25 +91,24 @@ const Detail = styled.div`
   padding-top: 7rem;
 `;
 const Box = styled.div`
-div{
-  display:flex;
-  margin-right:1rem;
-  /* justify-content:space-evenly; */
-}
-h2{
-  font-size:3.8rem;
-
-}
+  div {
+    display: flex;
+    margin-right: 1rem;
+    /* justify-content:space-evenly; */
+  }
+  h2 {
+    font-size: 3.8rem;
+  }
   button {
     background-color: #fff;
     display: flex;
     /* flex-direction: column; */
     align-items: center;
-    justify-content:space-evenly;
-    border:0px;
-    border-radius:0.4rem;
-    margin-right:1rem;
-    padding:0.2rem 0.9rem;
+    justify-content: space-evenly;
+    border: 0px;
+    border-radius: 0.4rem;
+    margin-right: 1rem;
+    padding: 0.2rem 0.9rem;
   }
   button:focus {
     outline: none;
@@ -101,14 +116,14 @@ h2{
 `;
 const Seg = styled.div``;
 
-const Button=styled.div`
- background-color: transparent;
-    display: flex;
-    /* flex-direction: column; */
-    align-items: center;
-    justify-content:space-evenly;
-    border:2px solid #fff;
-    border-radius:2rem;
-    margin-right:1rem;
-    padding:0.7rem;
-`
+const Button = styled.div`
+  background-color: transparent;
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  justify-content: space-evenly;
+  border: 2px solid #fff;
+  border-radius: 2rem;
+  margin-right: 1rem;
+  padding: 0.7rem;
+`;

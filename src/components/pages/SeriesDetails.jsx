@@ -4,13 +4,17 @@ import {useParams} from "react-router-dom";
 import Header from "../common/Header";
 import Footer from "../common/Footer";
 import styled from "styled-components";
+import ModalVideo from "react-modal-video";
+import "react-modal-video/scss/modal-video.scss";
 
 function SeriesDetails (props) {
     const {id} =useParams();
     const [seriesSelect, setSeriesSelect]=useState();
+      const [isOpen, setOpen] = useState(false);
     // const BASE_URL
+
     useEffect(()=>{
-    axios.get(`https://api.themoviedb.org/3/tv/${id}?api_key=0d94f61d891c39c0d8ddc956d5ca297b`)
+    axios.get(`https://api.themoviedb.org/3/tv/${id}?api_key=0d94f61d891c39c0d8ddc956d5ca297b&append_to_response=videos`)
     .then((res)=>{
         console.log(res)
         setSeriesSelect(res.data)
@@ -30,9 +34,19 @@ function SeriesDetails (props) {
             <button>
               <box-icon name="play"></box-icon>PLAY
             </button>
-            <button>
-              <box-icon name="play"></box-icon>TRAILER
-            </button>
+              <div>
+                <ModalVideo
+                  channel="youtube"
+                  autoplay
+                  isOpen={isOpen}
+                  videoId={seriesSelect?.videos.results[0].key}
+                  onClose={() => setOpen(false)}
+                />
+                <button onClick={() => setOpen(true)}>
+                  <box-icon name="play"></box-icon>TRAILER
+                </button>
+              </div>
+           
             <Buttoned>
               <box-icon name="plus"></box-icon>
             </Buttoned>
