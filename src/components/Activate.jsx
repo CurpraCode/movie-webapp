@@ -21,14 +21,14 @@ function Activate({match}){
     }
 
     console.log(token, name);
-  }, [match.params,formData]);
+  }, [match?.params,formData]);
   const { name, token} = formData;
 
   const handleSubmit = e => {
     e.preventDefault();
 
     axios
-      .post("https://curpramovie-api.herokuapp.com/activation", {
+      .post("https://curpramovie-api.herokuapp.com/api/activation", {
         token 
       })
       .then(res => {

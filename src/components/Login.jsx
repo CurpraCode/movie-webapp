@@ -12,7 +12,6 @@ function Login({history}) {
   const [formData, setFormData] = useState({
     email: '',
     password1: '',
-    textChange: 'Sign In'
   });
   const { email, password1} = formData;
   const handleChange = text => e => {
@@ -22,7 +21,7 @@ function Login({history}) {
    
         e.preventDefault();
         if (email && password1) {
-          setFormData({ ...formData, textChange: 'Submitting' });
+          setFormData({ ...formData });
           axios
             .post("https://curpramovie-api.herokuapp.com/api/login", {
               email,
@@ -34,7 +33,6 @@ function Login({history}) {
                   ...formData,
                   email: '',
                   password1: '',
-                  textChange: 'Submitted'
                 });
                 isAuth() && isAuth().role === 'home'
                   ? history.push('/home')
