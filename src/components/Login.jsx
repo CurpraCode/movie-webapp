@@ -6,7 +6,7 @@ import { Link, Redirect } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
 import { authenticate, isAuth } from './auth/auth';
-// import { GoogleLogin } from 'react-google-login';
+
 
 function Login({history}) {
   const [formData, setFormData] = useState({
@@ -14,17 +14,17 @@ function Login({history}) {
     password1: '',
     textChange: 'Sign In'
   });
-  const { email, password1, textChange } = formData;
+  const { email, password1} = formData;
   const handleChange = text => e => {
     setFormData({ ...formData, [text]: e.target.value });
   };
       const handleSubmit = e => {
-        console.log(process.env.REACT_APP_API_URL);
+   
         e.preventDefault();
         if (email && password1) {
           setFormData({ ...formData, textChange: 'Submitting' });
           axios
-            .post(`${process.env.REACT_APP_API_URL}/login`, {
+            .post("https://curpramovie-api.herokuapp.com/api/login", {
               email,
               password: password1
             })
@@ -36,7 +36,7 @@ function Login({history}) {
                   password1: '',
                   textChange: 'Submitted'
                 });
-                isAuth() && isAuth().role === 'admin'
+                isAuth() && isAuth().role === 'home'
                   ? history.push('/home')
                   : history.push('/home');
                 toast.success(`Hey ${res.data.user.name}, Welcome back!`);
@@ -59,7 +59,7 @@ function Login({history}) {
   return (
     <div>
       <AuthHeader />
-      {isAuth() ? <Redirect to='/' /> : null}
+      {isAuth() ? <Redirect to='/home' /> : null}
       <ToastContainer />
       <Divid>
         <h1>Login Page</h1>

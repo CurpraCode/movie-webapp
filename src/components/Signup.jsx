@@ -27,7 +27,7 @@ function SignUp() {
       if (password1 === password2) {
         setFormData({ ...formData, textChange: "Submitting" });
         axios
-          .post("http:/localhost/5000/api/register", {
+          .post("https://curpramovie-api.herokuapp.com/api/register", {
             name,
             email,
             password: password1,

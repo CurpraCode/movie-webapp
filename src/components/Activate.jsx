@@ -28,7 +28,7 @@ function Activate({match}){
     e.preventDefault();
 
     axios
-      .post("http:/localhost/5000/api/activation", {
+      .post("https://curpramovie-api.herokuapp.com/activation", {
         token 
       })
       .then(res => {
