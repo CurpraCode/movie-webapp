@@ -49,8 +49,17 @@ function Series() {
     <div>
       <Header />
       <MovieRow>
-        <p> <box-icon name='trending-up' animation='tada' color="#fff" size="md" ></box-icon>Trending</p>
-        <hr/>
+        <p>
+          {" "}
+          <box-icon
+            name="trending-up"
+            animation="tada"
+            color="#fff"
+            size="md"
+          ></box-icon>
+          Trending
+        </p>
+        <hr />
         <MovieSet>
           {current.map((currents) => {
             return (
@@ -78,10 +87,18 @@ function Series() {
             );
           })}
         </MovieSet>
-     
-     
-        <p> <box-icon name='tv' animation='tada' color="#fff" size="md" ></box-icon>On Air </p>
-       <hr/>
+
+        <p>
+          {" "}
+          <box-icon
+            name="tv"
+            animation="tada"
+            color="#fff"
+            size="md"
+          ></box-icon>
+          On Air{" "}
+        </p>
+        <hr />
         <MovieSet>
           {tv.map((Tvs) => {
             return (
@@ -109,9 +126,18 @@ function Series() {
             );
           })}
         </MovieSet>
-      
-      <p><box-icon name='youtube' size="md" type='logo' color="#fff" animation='tada' ></box-icon>Airing Today</p>
-       <hr/>
+
+        <p>
+          <box-icon
+            name="youtube"
+            size="md"
+            type="logo"
+            color="#fff"
+            animation="tada"
+          ></box-icon>
+          Airing Today
+        </p>
+        <hr />
         <MovieSet>
           {air.map((Airs) => {
             return (
@@ -151,15 +177,15 @@ const MovieRow = styled.div`
   max-width: 1140px;
   height: 100%;
   margin: 0px auto;
-  margin-top:6rem;
-  p{
-    font-size:1.6rem;
-    font-weight:bold;
-    display:flex;
-    align-items:center;
+  margin-top: 6rem;
+  p {
+    font-size: 1.6rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
   }
-  box-icon{
-    margin-right:5px;
+  box-icon {
+    margin-right: 5px;
   }
 `;
 const MovieSet = styled.div`
@@ -168,6 +194,9 @@ const MovieSet = styled.div`
   flex-flow: wrap;
   align-items: center;
   margin-top: 30px;
+  @media screen and (max-width: 399px) {
+    flex-flow: column !important;
+  }
 `;
 
 const MovieShape = styled.div`
@@ -182,26 +211,26 @@ const MovieShape = styled.div`
     /* transition: 0.5s ease; */
     backface-visibility: hidden;
   }
-  h4{
-    margin-bottom:0rem;
-    font-size:0.8rem;
+  h4 {
+    margin-bottom: 0rem;
+    font-size: 0.8rem;
   }
-  p{
-    display:flex;
-    align-items:center;
-    margin-right:0.3rem;
-    font-size:0.7rem;
+  p {
+    display: flex;
+    align-items: center;
+    margin-right: 0.3rem;
+    font-size: 0.7rem;
   }
-  span{
-    display:flex;
-    align-items:center;
-    color:#ffe70d;
-    margin-left:0.5rem;
+  span {
+    display: flex;
+    align-items: center;
+    color: #ffe70d;
+    margin-left: 0.5rem;
   }
-  img:hover{
+  img:hover {
     border: 2px solid rgba(45, 125, 245, 0.804);
-  transition: 0.2s ease-in;
-  opacity: 0.8;
-  transform :scale(1.02);
+    transition: 0.2s ease-in;
+    opacity: 0.8;
+    transform: scale(1.02);
   }
 `;
