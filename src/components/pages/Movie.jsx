@@ -14,7 +14,6 @@ function Movie() {
         `https://api.themoviedb.org/3/movie/now_playing?api_key=0d94f61d891c39c0d8ddc956d5ca297b`
       )
       .then((res) => {
-        console.log(res.data);
         setShow(res.data.results);
       })
       .catch((err) => console.log(err));
@@ -26,7 +25,6 @@ function Movie() {
         `https://api.themoviedb.org/3/movie/upcoming?api_key=0d94f61d891c39c0d8ddc956d5ca297b`
       )
       .then((res) => {
-        console.log(res.data);
         setUpcome(res.data.results);
       })
       .catch((err) => console.log(err));
@@ -38,16 +36,24 @@ function Movie() {
         `https://api.themoviedb.org/3/movie/top_rated?api_key=0d94f61d891c39c0d8ddc956d5ca297b`
       )
       .then((res) => {
-        console.log(res.data);
         setRate(res.data.results);
       })
       .catch((err) => console.log(err));
   }, []);
   return (
     <MovieRow>
-      <p><box-icon type='solid' animation='tada' size="md" name='hot' color="#fff"></box-icon> Latest</p>
-    <hr/>
-     <MovieSet>
+      <p>
+        <box-icon
+          type="solid"
+          animation="tada"
+          size="md"
+          name="hot"
+          color="#fff"
+        ></box-icon>{" "}
+        Latest
+      </p>
+      <hr />
+      <MovieSet>
         {show.map((shows) => {
           return (
             <MovieShape key={shows.id}>
@@ -71,8 +77,16 @@ function Movie() {
         })}
       </MovieSet>
 
-      <p><box-icon name='plus' size="md" animation='tada' color="#fff"></box-icon>Upcoming</p>
-      <hr/>
+      <p>
+        <box-icon
+          name="plus"
+          size="md"
+          animation="tada"
+          color="#fff"
+        ></box-icon>
+        Upcoming
+      </p>
+      <hr />
       <MovieSet>
         {upcome.map((upcomes) => {
           return (
@@ -97,8 +111,17 @@ function Movie() {
         })}
       </MovieSet>
 
-      <p><box-icon name='star' type='solid' size="md" animation='tada' color="#fff"></box-icon> Top Rated</p>
-      <hr/>
+      <p>
+        <box-icon
+          name="star"
+          type="solid"
+          size="md"
+          animation="tada"
+          color="#fff"
+        ></box-icon>{" "}
+        Top Rated
+      </p>
+      <hr />
       <MovieSet>
         {rate.map((rated) => {
           return (
@@ -133,14 +156,14 @@ const MovieRow = styled.div`
   max-width: 1140px;
   height: 100%;
   margin: 0px auto;
-  p{
-    font-size:1.6rem;
-    font-weight:bold;
-    display:flex;
-    align-items:center;
+  p {
+    font-size: 1.6rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
   }
-  box-icon{
-    margin-right:5px;
+  box-icon {
+    margin-right: 5px;
   }
 `;
 const MovieSet = styled.div`
@@ -149,6 +172,9 @@ const MovieSet = styled.div`
   flex-flow: wrap;
   align-items: center;
   margin-top: 30px;
+  @media screen and (max-width:399px) {
+    flex-flow: column !important;
+  }
 `;
 
 const MovieShape = styled.div`
@@ -163,26 +189,26 @@ const MovieShape = styled.div`
     /* transition: 0.5s ease; */
     backface-visibility: hidden;
   }
-  h4{
-    margin-bottom:0rem;
-    font-size:0.8rem;
+  h4 {
+    margin-bottom: 0rem;
+    font-size: 0.8rem;
   }
-  p{
-    display:flex;
-    align-items:center;
-    margin-right:0.3rem;
-    font-size:0.7rem;
+  p {
+    display: flex;
+    align-items: center;
+    margin-right: 0.3rem;
+    font-size: 0.7rem;
   }
-  span{
-    display:flex;
-    align-items:center;
-    color:#ffe70d;
-    margin-left:0.5rem;
+  span {
+    display: flex;
+    align-items: center;
+    color: #ffe70d;
+    margin-left: 0.5rem;
   }
-  img:hover{
+  img:hover {
     border: 2px solid rgba(45, 125, 245, 0.804);
-  transition: 0.2s ease-in;
-  opacity: 0.8;
-  transform :scale(1.02);
+    transition: 0.2s ease-in;
+    opacity: 0.8;
+    transform: scale(1.02);
   }
 `;
