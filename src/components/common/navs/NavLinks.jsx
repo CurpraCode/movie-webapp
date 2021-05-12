@@ -6,7 +6,7 @@ function NavLinks({ open }) {
   return (
     <div>
       <ListNav open={open}>
-        <ul>
+        <ul open={open}>
           <Link to="/home">
             <li>
               <box-icon name="home" size="1.9rem" color="#ffffff"></box-icon>

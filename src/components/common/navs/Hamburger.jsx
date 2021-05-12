@@ -3,10 +3,10 @@ import styled from "styled-components";
 import NavLinks from "./NavLinks";
 
 function Hamburger() {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   return (
     <>
-      <Burger open={open} onclick={() => setOpen(!open)}>
+      <Burger open={open} onClick={() => setOpen(!open)}>
         <div />
         <div />
         <div />
@@ -18,15 +18,15 @@ function Hamburger() {
 
 export default Hamburger;
 const Burger = styled.div`
-  width: 2rem;
-  height: 2rem;
-  position: fixed;
-  top: 15px;
-  right: 50px;
-  z-index: 2000;
   display: none;
 
-  @media (max-width: 780px) {
+  @media screen and (max-width: 780px) {
+    width: 2rem;
+  height: 2rem;
+  position: fixed;
+  /* top: 15px; */
+  right: 20px;
+    z-index: 50 !important;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -35,25 +35,26 @@ const Burger = styled.div`
   div {
     width: 1.9rem;
     height: 0.2rem;
-    border-radius: 10px;
-    position: ${({ open }) => (open ? "absolute" : "unset")};
-    transform: origin;
+    border-radius: 10px !important;
+    position: ${({ open }) => (open ? "absolute" : "unset")} !important;
+    transform: origin !important;
     background-color: #eaeaea;
     transition: all 0.3s linear;
-    z-index: 2000 !important;
+
 
     &:nth-child(1) {
-      transform: ${({ open }) => (open ? "rotate(45deg)" : "rotate(0)")};
+      transform: ${({ open }) => (open ? "rotate(45deg)" : "rotate(0)")} !important;
       border-radius: 10px;
     }
     &:nth-child(2) {
-      transform: ${({ open }) => (open ? "translateX(0)" : "translateX(0)")};
+      transform: ${({ open }) => (open ? "translateX(0)" : "translateX(0)")} !important;
       opacity: ${({ open }) => (open ? 0 : 1)};
-      transform: translateX(30%);
+      transform: translateX(10%) !important;
     }
     &:nth-child(3) {
-      transform: ${({ open }) => (open ? "rotate(-45deg)" : "rotate(0)")};
+      transform: ${({ open }) => (open ? "rotate(-45deg)" : "rotate(0)")} !important;
       margin-top: 0px;
+      
     }
   }
 `;

@@ -13,7 +13,7 @@ function Activate({match}){
   });
 
   useEffect(() => {
-    let token = match.params.token;
+    let token = match?.params.token;
     let { name } = jwt.decode(token);
 
     if (token) {
